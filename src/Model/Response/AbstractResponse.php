@@ -1,6 +1,6 @@
 <?php
 
-namespace Fruitware\QiwiServiceProvider\Model\Response;
+namespace johnluxor\QiwiPayment\Model\Response;
 
 /**
  * Common fields between methods

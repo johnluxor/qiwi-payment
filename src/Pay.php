@@ -1,9 +1,9 @@
 <?php
 
-namespace Fruitware\QiwiServiceProvider;
+namespace johnluxor\QiwiPayment;
 
-use Fruitware\QiwiServiceProvider\Model\Method\Pay\PayRequest;
-use Fruitware\QiwiServiceProvider\Model\Method\Pay\PayResponse;
+use johnluxor\QiwiPayment\Model\Method\Pay\PayRequest;
+use johnluxor\QiwiPayment\Model\Method\Pay\PayResponse;
 
 class Pay extends PayRequest
 {
@@ -24,7 +24,6 @@ class Pay extends PayRequest
             ->setPrvTxn(123)
             ->setSum($this->getSum())
             ->setResult(0)
-            ->setComment('some pay comment')
-        ;
+            ->setComment('some pay comment');
     }
 }

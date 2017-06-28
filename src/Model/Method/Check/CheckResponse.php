@@ -1,8 +1,9 @@
 <?php
 
-namespace Fruitware\QiwiServiceProvider\Model\Method\Check;
+namespace johnluxor\QiwiPayment\Model\Method\Check;
 
-use Fruitware\QiwiServiceProvider\Model\Response\AbstractResponse;
+use johnluxor\QiwiPayment\Model\Response\AbstractResponse;
+use LaLit\Array2XML;
 
 /**
  * Subscribers’ Account Status Check and Payment Registration Response
@@ -10,15 +11,16 @@ use Fruitware\QiwiServiceProvider\Model\Response\AbstractResponse;
 class CheckResponse extends AbstractResponse implements CheckResponseInterface
 {
     /**
-     * @return \SimpleXMLElement
+     * @return string
      */
     public function xml()
     {
-        $xml = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><response/>');
-        $xml->addChild('osmp_txn_id', $this->getOsmpTxnId());
-        $xml->addChild('result', $this->getResult());
-        $xml->addChild('comment', $this->getComment());
+        $response = [
+            'osmp_txn_id' => $this->getOsmpTxnId(),
+            'result' => $this->getResult(),
+            'comment' => $this->getComment(),
+        ];
 
-        return $xml;
+        return Array2XML::createXML('response', $response)->saveXML();
     }
 }

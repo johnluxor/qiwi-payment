@@ -1,14 +1,14 @@
 <?php
 
-namespace Fruitware\QiwiServiceProvider\Model\Method\Pay;
+namespace johnluxor\QiwiPayment\Model\Method\Pay;
 
-use Fruitware\QiwiServiceProvider\Model\Method\Check\CheckResponseInterface;
-use Fruitware\QiwiServiceProvider\Model\Response\AbstractResponse;
+use johnluxor\QiwiPayment\Model\Response\AbstractResponse;
+use LaLit\Array2XML;
 
 /**
  * Personal Account Refill Response
  */
-class PayResponse extends AbstractResponse implements CheckResponseInterface
+class PayResponse extends AbstractResponse implements PayResponseInterface
 {
     /**
      * Amount to be transferred to subscribers personal account
@@ -69,17 +69,18 @@ class PayResponse extends AbstractResponse implements CheckResponseInterface
     }
 
     /**
-     * @return \SimpleXMLElement
+     * @return string
      */
     public function xml()
     {
-        $xml = new \SimpleXMLElement('<?xml version="1.0" encoding="UTF-8"?><response/>');
-        $xml->addChild('osmp_txn_id', $this->getOsmpTxnId());
-        $xml->addChild('prv_txn', $this->getPrvTxn());
-        $xml->addChild('sum', $this->getSum());
-        $xml->addChild('result', $this->getResult());
-        $xml->addChild('comment', $this->getComment());
+        $response = [
+            'osmp_txn_id' => $this->getOsmpTxnId(),
+            'prv_txn' => $this->getPrvTxn(),
+            'sum' => $this->getSum(),
+            'result' => $this->getResult(),
+            'comment' => $this->getComment()
+        ];
 
-        return $xml;
+        return Array2XML::createXML('response', $response)->saveXML();
     }
 }

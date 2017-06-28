@@ -1,8 +1,8 @@
 <?php
 
-namespace Fruitware\QiwiServiceProvider\Model\Request;
+namespace johnluxor\QiwiPayment\Model\Request;
 
-use Fruitware\QiwiServiceProvider\Model\Response\ResponseInterface;
+use johnluxor\QiwiPayment\Model\Response\ResponseInterface;
 
 /**
  * Common fields and methods Interface

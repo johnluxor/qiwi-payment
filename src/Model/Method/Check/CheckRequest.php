@@ -1,8 +1,8 @@
 <?php
 
-namespace Fruitware\QiwiServiceProvider\Model\Method\Check;
+namespace johnluxor\QiwiPayment\Model\Method\Check;
 
-use Fruitware\QiwiServiceProvider\Model\Request\AbstractRequest;
+use johnluxor\QiwiPayment\Model\Request\AbstractRequest;
 
 /**
  * Subscribers’ Account Status Check and Payment Registration Request
@@ -14,7 +14,7 @@ abstract class CheckRequest extends AbstractRequest implements CheckRequestInter
      *
      * @return CheckResponseInterface
      */
-    public function getResponse()
+    public function getResponse(): CheckResponseInterface
     {
         return new CheckResponse();
     }
@@ -24,12 +24,11 @@ abstract class CheckRequest extends AbstractRequest implements CheckRequestInter
      *
      * @return CheckRequestInterface
      */
-    public function handleRequest(array $params)
+    public function handleRequest(array $params): CheckRequestInterface
     {
         return $this
             ->setTxnId($params['txn_id'])
             ->setAccount($params['account'])
-            ->setSum($params['sum'])
-        ;
+            ->setSum($params['sum']);
     }
 }

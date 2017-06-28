@@ -1,10 +1,10 @@
 <?php
 
-namespace Fruitware\QiwiServiceProvider;
+namespace johnluxor\QiwiPayment;
 
-use Fruitware\QiwiServiceProvider\Exception\ForbiddenIpException;
-use Fruitware\QiwiServiceProvider\Model\Request\RequestInterface;
-use Fruitware\QiwiServiceProvider\Model\ServiceInterface;
+use johnluxor\QiwiPayment\Exception\ForbiddenIpException;
+use johnluxor\QiwiPayment\Model\Request\RequestInterface;
+use johnluxor\QiwiPayment\Model\ServiceInterface;
 
 /**
  * Service
@@ -16,20 +16,22 @@ class Service implements ServiceInterface
      *
      * @var array
      */
-    protected $validIps = array();
+    protected $validIps = [
+
+    ];
 
     /**
      * Command class names for internal logic processing
      * Need to implement Model\Method\XXX interface
      *
      * @example array(
-     *      'check' => 'Fruitware\QiwiServiceProvider\Model\Method\Check\CheckRequest',
-     *      'pay'   => 'Fruitware\QiwiServiceProvider\Model\Method\Pay\PayRequest',
+     *      'check' => 'johnluxor\QiwiPayment\Model\Method\Check\CheckRequest',
+     *      'pay'   => 'johnluxor\QiwiPayment\Model\Method\Pay\PayRequest',
      * )
      *
      * @var array
      */
-    protected $commandClassNames = array();
+    protected $commandClassNames = [];
 
     /**
      * @param array $validIps
@@ -47,11 +49,11 @@ class Service implements ServiceInterface
      *
      * @return RequestInterface
      *
-     * @throws ForbiddenIpException
+     * @throws ForbiddenIpException|\BadMethodCallException
      */
     public function handleRequest(array $params)
     {
-        if (!in_array($this->getRequestIp(), $this->getValidIps())) {
+        if (!in_array($this->getRequestIp(), $this->getValidIps(), true)) {
             throw new ForbiddenIpException();
         }
 
@@ -75,7 +77,7 @@ class Service implements ServiceInterface
     /**
      * @return array
      */
-    public function getValidIps()
+    public function getValidIps(): array
     {
         return $this->validIps;
     }
@@ -84,25 +86,26 @@ class Service implements ServiceInterface
      * @param string $command Command name
      *
      * @return RequestInterface
+     * @throws \InvalidArgumentException
      */
     public function getCommandClassName($command)
     {
         if (!isset($this->commandClassNames[$command])) {
-            throw new \InvalidArgumentException(sprintf('Attempted to load class for command QIWI command "%s"', $command));
+            throw new \InvalidArgumentException(sprintf('Attempted to load class for command QIWI command "%s"',
+                $command));
         }
 
         $className = $this->commandClassNames[$command];
 
         if (!class_exists($className)) {
-            throw new \InvalidArgumentException(sprintf('Attempted to load class "%s" for command QIWI command "%s"', $className, $command));
+            throw new \InvalidArgumentException(sprintf('Attempted to load class "%s" for command QIWI command "%s"',
+                $className, $command));
         }
 
         /**
          * @var RequestInterface $class
          */
-        $class = new $className();
-
-        return $class;
+        return new $className();
     }
 
     /**

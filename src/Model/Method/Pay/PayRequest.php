@@ -1,8 +1,8 @@
 <?php
 
-namespace Fruitware\QiwiServiceProvider\Model\Method\Pay;
+namespace johnluxor\QiwiPayment\Model\Method\Pay;
 
-use Fruitware\QiwiServiceProvider\Model\Request\AbstractRequest;
+use johnluxor\QiwiPayment\Model\Request\AbstractRequest;
 
 /**
  * Personal Account Refill Request
@@ -58,7 +58,6 @@ abstract class PayRequest extends AbstractRequest implements PayRequestInterface
             ->setTxnId($params['txn_id'])
             ->setAccount($params['account'])
             ->setSum($params['sum'])
-            ->setTxnDate($params['txn_date'])
-        ;
+            ->setTxnDate($params['txn_date']);
     }
 }

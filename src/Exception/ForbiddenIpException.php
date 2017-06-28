@@ -1,6 +1,6 @@
 <?php
 
-namespace Fruitware\QiwiServiceProvider\Exception;
+namespace johnluxor\QiwiPayment\Exception;
 
 /**
  * Class ForbiddenIpException

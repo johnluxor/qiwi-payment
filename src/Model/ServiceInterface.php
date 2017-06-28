@@ -1,9 +1,9 @@
 <?php
 
-namespace Fruitware\QiwiServiceProvider\Model;
+namespace johnluxor\QiwiPayment\Model;
 
-use Fruitware\QiwiServiceProvider\Exception\ForbiddenIpException;
-use Fruitware\QiwiServiceProvider\Model\Request\RequestInterface;
+use johnluxor\QiwiPayment\Exception\ForbiddenIpException;
+use johnluxor\QiwiPayment\Model\Request\RequestInterface;
 
 /**
  * Service Interface
@@ -21,7 +21,7 @@ interface ServiceInterface
      *
      * @return RequestInterface
      *
-     * @throws ForbiddenIpException
+     * @throws ForbiddenIpException|\BadMethodCallException
      */
     public function handleRequest(array $params);
 

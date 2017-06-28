@@ -1,8 +1,8 @@
 <?php
 
-namespace Fruitware\QiwiServiceProvider\Model\Method\Pay;
+namespace johnluxor\QiwiPayment\Model\Method\Pay;
 
-use Fruitware\QiwiServiceProvider\Model\Response\ResponseInterface;
+use johnluxor\QiwiPayment\Model\Response\ResponseInterface;
 
 /**
  * Subscribers’ Account Status Pay and Payment Registration Response Interface

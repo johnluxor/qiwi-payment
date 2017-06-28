@@ -1,8 +1,8 @@
 <?php
 
-namespace Fruitware\QiwiServiceProvider\Model\Method\Check;
+namespace johnluxor\QiwiPayment\Model\Method\Check;
 
-use Fruitware\QiwiServiceProvider\Model\Request\RequestInterface;
+use johnluxor\QiwiPayment\Model\Request\RequestInterface;
 
 /**
  * Subscribers’ Account Status Check and Payment Registration Request Interface

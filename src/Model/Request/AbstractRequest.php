@@ -1,8 +1,8 @@
 <?php
 
-namespace Fruitware\QiwiServiceProvider\Model\Request;
+namespace johnluxor\QiwiPayment\Model\Request;
 
-use Fruitware\QiwiServiceProvider\Model\Response\ResponseInterface;
+use johnluxor\QiwiPayment\Model\Response\ResponseInterface;
 
 /**
  * Common fields and methods
@@ -15,7 +15,7 @@ abstract class AbstractRequest implements RequestInterface
      * @var int
      * @required
      */
-    protected $txnId;
+    protected $txn_id;
 
     /**
      * Subscribers’ identifier in providers information system
@@ -61,7 +61,7 @@ abstract class AbstractRequest implements RequestInterface
      */
     public function setTxnId($txnId)
     {
-        $this->txnId = $txnId;
+        $this->txn_id = $txnId;
 
         return $this;
     }
@@ -71,7 +71,7 @@ abstract class AbstractRequest implements RequestInterface
      */
     public function getTxnId()
     {
-        return $this->txnId;
+        return $this->txn_id;
     }
 
     /**

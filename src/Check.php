@@ -1,9 +1,9 @@
 <?php
 
-namespace Fruitware\QiwiServiceProvider;
+namespace johnluxor\QiwiPayment;
 
-use Fruitware\QiwiServiceProvider\Model\Method\Check\CheckRequest;
-use Fruitware\QiwiServiceProvider\Model\Method\Check\CheckResponse;
+use johnluxor\QiwiPayment\Model\Method\Check\CheckRequest;
+use johnluxor\QiwiPayment\Model\Method\Check\CheckResponse;
 
 class Check extends CheckRequest
 {
@@ -22,7 +22,6 @@ class Check extends CheckRequest
         return $response
             ->setOsmpTxnId($this->getTxnId())
             ->setResult(0)
-            ->setComment('some Check comment')
-        ;
+            ->setComment('some Check comment');
     }
 }
