@@ -33,6 +33,30 @@ abstract class AbstractResponse implements ResponseInterface
     protected $comment = '';
 
     /**
+     * @var int
+     */
+    public $sum;
+
+    /**
+     * @param $sum
+     * @return $this
+     */
+    public function setSum($sum)
+    {
+        $this->sum = $sum;
+
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getSum()
+    {
+        return $this->sum;
+    }
+
+    /**
      * @return \SimpleXMLElement
      */
     abstract public function xml();
