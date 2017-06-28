@@ -35,7 +35,7 @@ abstract class AbstractResponse implements ResponseInterface
     /**
      * @var int
      */
-    public $sum;
+    protected $sum;
 
     /**
      * @param $sum
@@ -43,7 +43,7 @@ abstract class AbstractResponse implements ResponseInterface
      */
     public function setSum($sum)
     {
-        $this->sum = $sum;
+        $this->sum = (float)$sum;
 
         return $this;
     }
@@ -53,7 +53,7 @@ abstract class AbstractResponse implements ResponseInterface
      */
     public function getSum()
     {
-        return $this->sum;
+        return number_format($this->sum, 2, '.', '');
     }
 
     /**
